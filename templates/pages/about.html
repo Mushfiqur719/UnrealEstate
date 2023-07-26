@@ -35,8 +35,8 @@
   <section id="about" class="py-4">
     <div class="container">
       <div class="row">
-        <div class="col-md-8">
-          <h2>We Search For The Perfect Home</h2>
+        <div class="col-md-8" style="background-color:rgb( 255 255 255 / 100%); border-radius: 30px;" >
+          <h2  >We Search For The Perfect Home</h2>
           <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
           <img src="{% static 'img/about.jpg' %}" alt="">
           <p class="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis esse officia repudiandae ad saepe ex, amet
@@ -85,17 +85,29 @@
         {% if realtors %}
           
           {% for realtor in realtors %}
-            <div class="col-md-4">
-              <img src="{{ realtor.photo.url }}" alt="" class="rounded-circle mb-3">
-              <h4>{{ realtor }}</h4>
-              <p class="text-success">
-                <i class="fas fa-award text-success mb-3"></i> Realtor</p>
-              <hr>
-              <p>
-                <i class="fas fa-phone"></i> {{ realtor.phone }}</p>
-              <p>
-                <i class="fas fa-envelope-open"></i> {{ realtor.email }}</p>
-            </div>            
+          <div class="col-md-4">
+            <div class="card">
+              <img class="card-img-top" src="{{ realtor.photo.url }}" alt="Seller of the month">
+              <div class="card-body">
+                <h5 class="card-title">realtor</h5>
+                <p class="text-success">
+                  <i class="fas fa-award text-success mb-3"></i> Realtor</p>
+                <hr>
+                <p>
+                  <i class="fas fa-phone"></i> {{ realtor.phone }}</p>
+                <p>
+                  <i class="fas fa-envelope-open"></i> {{ realtor.email }}</p>
+                
+       
+              </div>
+            </div>
+          </div>  
+          
+           <!-- <div class="col-md-4">
+              
+              
+            </div> -->    
+                 
           {% endfor %}
             
         {% else %}

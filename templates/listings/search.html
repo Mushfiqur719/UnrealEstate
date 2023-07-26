@@ -50,25 +50,23 @@
                   <option selected="true" disabled="disabled">Bedrooms (Any)</option>
                   {% for key,value in bedroom_choices.items %}
                       <option value="{{ key }}"
-                      {% if values.bedrooms == key %}
+                      {% if key == values.bedrooms %}
                         selected
                       {% endif %}
-                      >{{ value}}</option>
+                      >{{ value }}</option>
                   {% endfor %}
                 </select>
               </div>
-              <div class="col-md-6 mb-3">
-                <select name="price" class="form-control">
-                  <option selected="true" disabled="disabled">Max Price (All)</option>
-                  {% for key,value in price_choices.items %}
-                      <option value="{{ key }}"
-                      {% if values.price == key %}
-                        selected
-                      {% endif %}
-                      >{{ value}}</option>
-                  {% endfor %}
-                </select>
-              </div>
+              
+              <div class="col-md-6 mb-3"> 
+                <select name="price" class="form-control"> 
+                    <option selected="true" disabled="disabled">Max Price (All)</option> 
+                    {% for key , value in price_choices.items %} 
+                    <option value="{{ key }}" {% if key==values.price %} selected {% endif %}>{{ value }} 
+                    </option> 
+                    {% endfor %} 
+                </select> 
+            </div>
             </div>
             <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
           </form>

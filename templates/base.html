@@ -18,7 +18,13 @@
     {% block title %}   {% endblock %}</title>
     <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
 </head>
-<body>
+<body background="/media/background.jpg" style="background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+">
+  
+  
+
 {% include 'partials/_topbar.html' %}
 
 {% include 'partials/_navbar.html' %}
@@ -30,6 +36,7 @@
   
   
   {% include 'partials/_footer.html' %}	
+ 
 	<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
   	<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 	<script src="{% static 'js/lightbox.min.js' %}"></script>
