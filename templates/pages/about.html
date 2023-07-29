@@ -102,6 +102,11 @@
                 <p>
                   <i class="fas fa-envelope-open"></i> {{ realtor.email }}
                 </p>
+                  {% if user.is_authenticated and user.is_staff %}
+                  <hr>
+                    <a href="{% url 'edit_realtor' realtor.id %}" class="btn btn-warning">Edit</a>
+                    <a href="{% url 'delete_realtor' realtor.id %}" class="btn btn-danger">Delete</a>
+                  {% endif %}
               </div>
             </div>
           </div>

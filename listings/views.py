@@ -53,13 +53,20 @@ def add_realtor(request):
 def edit_realtor(request, realtor_id):
     realtor = get_object_or_404(Realtor, pk=realtor_id)
     if request.method == 'POST':
-        form = RealtorForm(request.POST,request.FILES)
+        form = RealtorForm(request.POST,request.FILES,instance=realtor)
         if form.is_valid():
             form.save()
             return redirect("about")
     else:
-        form = RealtorForm()
+        form = RealtorForm(instance=realtor)
     return render(request,"listings/edit_realtor.html", {'form':form})
+
+def delete_realtor(request,realtor_id):
+    realtor = get_object_or_404(Listing, pk=realtor_id)
+    if request.method=='POST':
+        realtor.delete()
+        return redirect("about")
+    return render(request,"listings/delete_realtor.html",{'realtor' : realtor})
 
 def listing(request, listing_id):
     listing = get_object_or_404(Listing, pk=listing_id)
