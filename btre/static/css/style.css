@@ -2,10 +2,10 @@
   color: #fff !important; 
   background-color: #0e717eab;
 }
-#background{
+
 
 /* background-image: url(../img/home2.jpg) ;  */
-}
+
 
 img {
   max-width: 100%;
@@ -25,7 +25,7 @@ img {
   margin-right: 0.4rem; }
 
 #showcase {
-  background-image: url(../img/home2.jpg)  ;
+  /* background-image: url(../img/home2.jpg)  ; */
   position: relative;
   min-height: 650px;
   color: #fff;
@@ -46,9 +46,13 @@ img {
     left: 0;
     min-height: 400px;
     width: 100%;
-    /* background: rgb(213, 211, 230);  */
+    background: rgb(213, 211, 230); 
     border-top-left-radius: 50px; 
-    border-top-right-radius: 40px; }
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 50; 
+    border-bottom-right-radius: 50; }
+    
+  
 
 #services {
   /* background-image: url(../img/home2.jpg)  ; */
