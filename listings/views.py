@@ -13,13 +13,24 @@ def index(request):
     return render(request, 'listings/listings.html',context)
 
 def add_listing(request):
-    form = ListingForm(request.POST)
-    if form.is_valid():
-        form.save()
-        return redirect("listings")
+    if request.method=='POST':
+        form = ListingForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("listings")
     else:
         form = ListingForm()
     return render(request,"listings/add_listing.html", {'form':form})
+
+def add_realtor(request):
+    if request.method == 'POST':
+        form = RealtorForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("about")
+    else:
+        form = RealtorForm()
+    return render(request,"listings/add_realtor.html", {'form':form})
 
 def listing(request, listing_id):
     listing = get_object_or_404(Listing, pk=listing_id)
