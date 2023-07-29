@@ -27,9 +27,9 @@
               <div class="col-md-4 mb-3">
                 <label class="sr-only">state</label>
                 <select name="state" class="form-control">
-                  <option selected="true" disabled="disabled">state (All)</option>
+                  <option selected="true" disabled="disabled">Choose by area</option>
                   
-                  {% for key,value in state_choices.items %}
+                  {% for key,value in area_choices.items %}
                       <option value="{{ key }}"
                       
                       {% if values.state == key %}
@@ -44,7 +44,7 @@
             </div>
             <!-- Form Row 2 -->
             <div class="form-row">
-              <div class="col-md-6 mb-3">
+              <div class="col-md-4 mb-3">
                 <label class="sr-only">Bedrooms</label>
                 <select name="bedrooms" class="form-control">
                   <option selected="true" disabled="disabled">Bedrooms (Any)</option>
@@ -53,11 +53,11 @@
                       {% if values.bedrooms == key %}
                         selected
                       {% endif %}
-                      >{{ value}}</option>
+                      >{{ value}} Bedrooms</option>
                   {% endfor %}
                 </select>
               </div>
-              <div class="col-md-6 mb-3">
+              <div class="col-md-4 mb-3">
                 <select name="price" class="form-control">
                   <option selected="true" disabled="disabled">Max Price (All)</option>
                   {% for key,value in price_choices.items %}
@@ -65,7 +65,19 @@
                       {% if values.price == key %}
                         selected
                       {% endif %}
-                      >{{ value}}</option>
+                      >{{ value }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <select name="size" class="form-control" id="type">
+                  <option selected="true" disabled="disabled">Size (sqft)</option>
+                  {% for key,value in size_choices.items  %}
+                    <option value="{{ key }}"
+                    {% if values.size == key %}
+                        selected
+                      {% endif %}
+                    >{{ value }} sqft</option>
                   {% endfor %}
                 </select>
               </div>
@@ -120,7 +132,7 @@
                     <hr>
                     <div class="row py-2 text-secondary">
                     <div class="col-6">
-                        <i class="fas fa-th-large"></i> Sqft: {{ listing.sqft }}</div>
+                        <i class="fas fa-th-large"></i> Sqft: {{ listing.size }}</div>
                     <div class="col-6">
                         <i class="fas fa-car"></i> Garage: {{ listing.garage }}</div>
                     </div>

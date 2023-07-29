@@ -12,7 +12,7 @@
       <div class="home-search p-5">
         <div class="overlay p-5">
           <h1 class="display-4 mb-4">
-            House Rent Searching Just Got So Easy
+            Searching Your Dream Home Just Got So Easy
           </h1>
           <p class="lead">It is signed by the lessee and lessor to indicate agreement to
             the conditions placed by the lessor!</p>
@@ -33,8 +33,7 @@
                 <div class="col-md-4 mb-3">
                   <label class="sr-only">State</label>
                   <select name="state" class="form-control">
-                    <option selected="true" disabled="disabled">State (All)</option>
-                    
+                    <option selected="true" disabled="disabled">Choose by area</option>
                     {% for key,value in state_choices.items  %}
                       <option value="{{ key }}">{{ value }}</option>
                     {% endfor %}
@@ -44,19 +43,30 @@
               </div>
               <!-- Form Row 2 -->
               <div class="form-row">
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
                   <label class="sr-only">Bedrooms</label>
                   <select name="bedrooms" class="form-control">
                     <option selected="true" disabled="disabled">Bedrooms (All)</option>
                     {% for key,value in bedroom_choices.items  %}
-                      <option value="{{ key }}">{{ value }}</option>
+                      <option value="{{ key }}">{{ value }} Bedrooms</option>
                     {% endfor %}
                   </select>
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
                   <select name="price" class="form-control" id="type">
+                    <option selected="true" disabled="disabled">Price Range</option>
+
                     {% for key,value in price_choices.items  %}
-                      <option value="{{ key }}">{{ value }}</option>
+                      <option value="{{ key }}">{{ value }} TK</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <select name="size" class="form-control" id="type">
+                    <option selected="true" disabled="disabled">Size (sqft)</option>
+
+                    {% for key,value in size_choices.items  %}
+                      <option value="{{ key }}">{{ value }} sqft</option>
                     {% endfor %}
                   </select>
                 </div>
