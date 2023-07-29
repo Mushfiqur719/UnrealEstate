@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Listing
+from .forms import ListingForm, RealtorForm
 from django.core.paginator import Paginator
 from .choices import bedroom_choices,area_choices, price_choices, size_choices
 
@@ -10,6 +11,15 @@ def index(request):
     listings = paginator.get_page(page)
     context = {'listings':listings}
     return render(request, 'listings/listings.html',context)
+
+def add_listing(request):
+    form = ListingForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect("listings")
+    else:
+        form = ListingForm()
+    return render(request,"listings/add_listing.html", {'form':form})
 
 def listing(request, listing_id):
     listing = get_object_or_404(Listing, pk=listing_id)

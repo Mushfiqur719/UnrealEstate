@@ -38,15 +38,15 @@
             <a class="nav-link" href="{% url 'listings' %}">Posts</a>
           </li>
 
-          {% if user.is_authenticated and user.user_type == 'seller' %}
+          {% if user.is_authenticated and user.is_admin %}
           <li 
-            {% if 'seller_dashboard' in request.path %}
+            {% if 'add-listings' in request.path %}
               class="nav-item active mr-3"
             {% else %}
               class="nav-item  mr-3"
             {% endif %}          
             >
-          <a class="nav-link" href="{% url 'seller_dashboard' %}">Sell</a>
+          <a class="nav-link" href="{% url 'add_listing' %}">Sell</a>
         </li>
           {% endif %}
 
@@ -71,8 +71,9 @@
               </a>
               <form action="{% url 'logout' %}" id="logout" method="POST">
                 {% csrf_token %}
-                <input type="hidden">
+                <input type="hidden" name="logout" value="1">
               </form>
+              
             </li>
           {% else %}
             
