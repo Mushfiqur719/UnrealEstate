@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Listing
+from .models import Listing, Realtor
 from .forms import ListingForm, RealtorForm
 from django.core.paginator import Paginator
 from .choices import bedroom_choices,area_choices, price_choices, size_choices
@@ -14,7 +14,7 @@ def index(request):
 
 def add_listing(request):
     if request.method=='POST':
-        form = ListingForm(request.POST, request.FILES)
+        form = ListingForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             return redirect("listings")
@@ -22,15 +22,44 @@ def add_listing(request):
         form = ListingForm()
     return render(request,"listings/add_listing.html", {'form':form})
 
+def edit_listing(request,listing_id):
+    listing = get_object_or_404(Listing, pk=listing_id)
+    if request.method=='POST':
+        form = ListingForm(request.POST,request.FILES, instance=listing)
+        if form.is_valid():
+            form.save()
+            return redirect("listings")
+    else:
+        form = ListingForm(instance=listing)
+    return render(request,"listings/edit_listing.html", {'form':form})
+
+def delete_listing(request,listing_id):
+    listing = get_object_or_404(Listing, pk=listing_id)
+    if request.method=='POST':
+        listing.delete()
+        return redirect("listings")
+    return render(request,"listings/delete_listing.html",{'listing' : listing})
+
 def add_realtor(request):
     if request.method == 'POST':
-        form = RealtorForm(request.POST, request.FILES)
+        form = RealtorForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             return redirect("about")
     else:
         form = RealtorForm()
     return render(request,"listings/add_realtor.html", {'form':form})
+
+def edit_realtor(request, realtor_id):
+    realtor = get_object_or_404(Realtor, pk=realtor_id)
+    if request.method == 'POST':
+        form = RealtorForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("about")
+    else:
+        form = RealtorForm()
+    return render(request,"listings/edit_realtor.html", {'form':form})
 
 def listing(request, listing_id):
     listing = get_object_or_404(Listing, pk=listing_id)
@@ -54,7 +83,7 @@ def search(request):
     if 'area' in request.GET:
         area = request.GET['area'] 
         if area:
-            queryset_list = queryset_list.filter(state__iexact=area)    
+            queryset_list = queryset_list.filter(area__iexact=area)    
     
     if 'bedrooms' in request.GET:
         bedrooms = request.GET['bedrooms'] 

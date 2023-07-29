@@ -27,4 +27,3 @@ class Listing(models.Model):
     listing_date = models.DateTimeField(default=datetime.now,blank=True)
     def __str__(self):
         return self.title
-

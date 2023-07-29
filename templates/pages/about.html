@@ -87,17 +87,25 @@
         {% if realtors %}
           
           {% for realtor in realtors %}
-            <div class="col-md-4">
-              <img src="{{ realtor.photo.url }}" alt="" class="rounded-circle mb-3">
-              <h4>{{ realtor }}</h4>
-              <p class="text-success">
-                <i class="fas fa-award text-success mb-3"></i> Realtor</p>
-              <hr>
-              <p>
-                <i class="fas fa-phone"></i> {{ realtor.phone }}</p>
-              <p>
-                <i class="fas fa-envelope-open"></i> {{ realtor.email }}</p>
-            </div>            
+          <div class="col-md-4">
+            <div class="card">
+              <img src="{{ realtor.photo.url }}" alt="" class="card-img-top rounded-circle mt-3 ml-auto mr-auto" style="width: 100px; height: 100px;">
+              <div class="card-body">
+                <h4 class="card-title">{{ realtor }}</h4>
+                <p class="card-text text-success">
+                  <i class="fas fa-award text-success"></i> Realtor
+                </p>
+                <hr>
+                <p>
+                  <i class="fas fa-phone"></i> {{ realtor.phone }}
+                </p>
+                <p>
+                  <i class="fas fa-envelope-open"></i> {{ realtor.email }}
+                </p>
+              </div>
+            </div>
+          </div>
+          
           {% endfor %}
             
         {% else %}
