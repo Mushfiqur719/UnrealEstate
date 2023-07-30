@@ -62,7 +62,7 @@ def edit_realtor(request, realtor_id):
     return render(request,"listings/edit_realtor.html", {'form':form})
 
 def delete_realtor(request,realtor_id):
-    realtor = get_object_or_404(Listing, pk=realtor_id)
+    realtor = get_object_or_404(Realtor, pk=realtor_id)
     if request.method=='POST':
         realtor.delete()
         return redirect("about")
@@ -105,7 +105,7 @@ def search(request):
     if 'size' in request.GET:
         size = request.GET['size'] 
         if size:
-            queryset_list = queryset_list.filter(size__lte=size)       
+            queryset_list = queryset_list.filter(size__gte=size)       
                                     
     context = {
         'bedroom_choices': bedroom_choices,

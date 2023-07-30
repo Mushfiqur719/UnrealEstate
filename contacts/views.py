@@ -15,6 +15,10 @@ def contact(request):
         user_id = request.POST['user_id']
         realtor_email = request.POST['realtor_email']
 
+        if not request.user.is_authenticated:
+            messages.error(request, 'You must be logged in to make a contact')
+            return redirect('/listings/' + listing_id)
+
         if request.user.is_authenticated:
             user_id = request.user.id
             has_contacted = Contact.objects.all().filter(user_id=user_id, listing_id=listing_id)

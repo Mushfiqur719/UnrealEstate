@@ -10,5 +10,5 @@ urlpatterns = [
     path('delete-listing/<int:listing_id>/',views.delete_listing, name="delete_listing"),
     path('add-realtor/',views.add_realtor, name="add_realtor"),
     path('edit-realtor/<int:realtor_id>/',views.edit_realtor, name="edit_realtor"),
-    path('edit-realtor/<int:realtor_id>/',views.delete_realtor, name="delete_realtor"),
+    path('delete-realtor/<int:realtor_id>/',views.delete_realtor, name="delete_realtor"),
 ]
